@@ -1,1 +1,109 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib> // for rand() and srand()
+#include <ctime>   // for time()
+using namespace std;
 
+// Structure to store vocabulary and its meaning
+struct Flashcard {
+    string word;
+    string meaning;
+};
+
+// Function prototypes
+void addFlashcard(vector<Flashcard> &flashcards);
+void practiceFlashcards(const vector<Flashcard> &flashcards);
+void practiceWriting(const vector<Flashcard> &flashcards);
+
+int main() {
+    vector<Flashcard> flashcards;
+    int choice;
+
+    do {
+        cout << "\n==============================\n";
+        cout << "      Language Trainer\n";
+        cout << "==============================\n";
+        cout << "1. Add Vocabulary\n";
+        cout << "2. Practice Flashcards\n";
+        cout << "3. Practice Writing\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore(); // Clear newline character from input buffer
+
+        switch (choice) {
+            case 1:
+                addFlashcard(flashcards);
+                break;
+            case 2:
+                practiceFlashcards(flashcards);
+                break;
+            case 3:
+                practiceWriting(flashcards);
+                break;
+            case 4:
+                cout << "Goodbye! Keep practicing!\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+// Function to add vocabulary to the flashcard list
+void addFlashcard(vector<Flashcard> &flashcards) {
+    Flashcard newCard;
+    cout << "Enter a word: ";
+    getline(cin, newCard.word);
+    cout << "Enter its meaning: ";
+    getline(cin, newCard.meaning);
+    flashcards.push_back(newCard);
+    cout << "Vocabulary added successfully!\n";
+}
+
+// Function to practice flashcards (show word and ask for meaning)
+void practiceFlashcards(const vector<Flashcard> &flashcards) {
+    if (flashcards.empty()) {
+        cout << "No flashcards available. Please add some vocabulary first.\n";
+        return;
+    }
+
+    srand(time(0)); // Seed for random number generation
+    int index = rand() % flashcards.size();
+    string answer;
+
+    cout << "\nWhat is the meaning of the word: " << flashcards[index].word << "?\n";
+    cout << "Your answer: ";
+    getline(cin, answer);
+
+    if (answer == flashcards[index].meaning) {
+        cout << "Correct! Well done!\n";
+    } else {
+        cout << "Incorrect. The correct meaning is: " << flashcards[index].meaning << "\n";
+    }
+}
+
+// Function to practice writing (show meaning and ask for the word)
+void practiceWriting(const vector<Flashcard> &flashcards) {
+    if (flashcards.empty()) {
+        cout << "No flashcards available. Please add some vocabulary first.\n";
+        return;
+    }
+
+    srand(time(0)); // Seed for random number generation
+    int index = rand() % flashcards.size();
+    string answer;
+
+    cout << "\nWhat is the word for the meaning: " << flashcards[index].meaning << "?\n";
+    cout << "Your answer: ";
+    getline(cin, answer);
+
+    if (answer == flashcards[index].word) {
+        cout << "Correct! Well done!\n";
+    } else {
+        cout << "Incorrect. The correct word is: " << flashcards[index].word << "\n";
+    }
+}
