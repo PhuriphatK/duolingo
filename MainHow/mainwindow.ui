@@ -17,20 +17,20 @@
    <widget class="QLabel" name="MainManu">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>511</height>
+      <x>-60</x>
+      <y>-140</y>
+      <width>931</width>
+      <height>791</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/res/Duolinga_page-0001.jpg);</string>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>C:/Users/supas/Downloads/Duolinga_page-0001.jpg</pixmap>
-    </property>
     <property name="scaledContents">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
